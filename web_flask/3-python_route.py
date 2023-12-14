@@ -1,42 +1,48 @@
 #!/usr/bin/python3
-"""
-This is a major update to 0.
-It also displays hbnb.
-Added print_C function.
-Added the print_python function.
-Both listen to 0.0.0.0, port 5000.
-"""
-
-
+"""Module"""
 from flask import Flask
-from markupsafe import escape
-
+"""Create a Flask app instance"""
 app = Flask(__name__)
 
+"""Set the option to allow routes without trailing slashes"""
+app.url_map.strict_slashes = False
 
-@app.route("/", strict_slashes=False)
-def hello_hbnb():
-    """Hello function that displays:"""
+
+"""Route establishment"""
+
+
+@app.route("/")
+def display_home():
     return "Hello HBNB!"
 
 
-@app.route("/hbnb", strict_slashes=False)
-def print_hbnb():
-    """Function that displays:"""
+"""Route establishment"""
+
+
+@app.route("/hbnb")
+def display_hbnb():
     return "HBNB"
 
 
-@app.route("/c/<text>", strict_slashes=False)
-def print_C(text):
-    """Function that displays:"""
-    return "C {}".format(escape(text).replace('_', ' '))
+"""Route establishment"""
 
 
-@app.route("/python/", strict_slashes=False)
-@app.route("/python/<text>", strict_slashes=False)
-def print_python(text='is cool'):
-    """Function that displays:"""
-    return "Python {}".format(escape(text).replace('_', ' '))
+@app.route("/c/<text>")
+def display_c(text):
+    return f"C {text.replace('_', ' ')}"
 
-if __name__ == '__main__':
+
+"""Route establishment"""
+
+
+@app.route("/python")
+@app.route("/python/<text>")
+def display_python(text='is_cool'):
+    return f"Python {text.replace('_', ' ')}"
+
+
+"""Run only if it's the main file"""
+
+
+if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

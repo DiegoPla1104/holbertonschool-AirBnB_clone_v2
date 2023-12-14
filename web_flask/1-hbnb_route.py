@@ -1,25 +1,31 @@
 #!/usr/bin/python3
-"""
-This is a major update to 0.
-It also displays hbnb.
-Both listen to 0.0.0.0, port 5000
-"""
-
+"""Module"""
 from flask import Flask
-
+"""Create a Flask app instance"""
 app = Flask(__name__)
 
+"""Set the option to allow routes without trailing slashes"""
+strict_slashes = False
 
-@app.route("/", strict_slashes=False)
-def hello_hbnb():
-    """Hello function that displays:"""
+
+"""Route establishment"""
+
+
+@app.route("/")
+def display_home():
     return "Hello HBNB!"
 
 
-@app.route("/hbnb", strict_slashes=False)
-def hbnb():
-    """Function that displays:"""
+"""Route establishment"""
+
+
+@app.route("/hbnb")
+def display_hbnb():
     return "HBNB"
 
-if __name__ == '__main__':
+
+"""Run only if it's the main file"""
+
+
+if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

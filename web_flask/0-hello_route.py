@@ -1,20 +1,23 @@
 #!/usr/bin/python3
-"""
-This code creates an intance of Flask and makes
-it listen to 0.0.0.0, port 5000.
-It returns "Hello HBNB!" as display.
-"""
-
+"""Module"""
 from flask import Flask
-
+"""Create a Flask app instance"""
 app = Flask(__name__)
 
+"""Set the option to allow routes without trailing slashes"""
+strict_slashes = False
 
-@app.route("/", strict_slashes=False)
-def hello_hbnb():
-    """Main function"""
+
+"""Route establishment"""
+
+
+@app.route("/")
+def display():
     return "Hello HBNB!"
 
 
-if __name__ == '__main__':
+"""Run only if it's the main file"""
+
+
+if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

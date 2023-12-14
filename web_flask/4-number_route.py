@@ -1,49 +1,57 @@
 #!/usr/bin/python3
-"""
-This is a major update to 0.
-It also displays hbnb.
-Added print_C function.
-Added the print_python function.
-Added the print_number function; this one is interesting
-since it has an "only if int" condition.
-Both listen to 0.0.0.0, port 5000.
-"""
-
-from flask import Flask
-from markupsafe import escape
-
+"""Module"""
+from flask import Flask, abort
+"""Create a Flask app instance"""
 app = Flask(__name__)
 
+"""Set the option to allow routes without trailing slashes"""
+app.url_map.strict_slashes = False
 
-@app.route("/", strict_slashes=False)
-def hello_hbnb():
-    """Hello function that displays:"""
+
+"""Route establishment"""
+
+
+@app.route("/")
+def display_home():
     return "Hello HBNB!"
 
 
-@app.route("/hbnb", strict_slashes=False)
-def print_hbnb():
-    """Function that displays:"""
+"""Route establishment"""
+
+
+@app.route("/hbnb")
+def display_hbnb():
     return "HBNB"
 
 
-@app.route("/c/<text>", strict_slashes=False)
-def print_C(text):
-    """Function that displays:"""
-    return "C {}".format(escape(text).replace('_', ' '))
+"""Route establishment"""
 
 
-@app.route("/python/", strict_slashes=False)
-@app.route("/python/<text>", strict_slashes=False)
-def print_python(text='is cool'):
-    """Function that displays:"""
-    return "Python {}".format(escape(text).replace('_', ' '))
+@app.route("/c/<text>")
+def display_c(text):
+    return f"C {text.replace('_', ' ')}"
 
 
-@app.route("/number/<int:n>", strict_slashes=False)
-def print_number(n):
-    """Function that displays:"""
-    return "{} is a number".format(n)
+"""Route establishment"""
 
-if __name__ == '__main__':
+
+@app.route("/python")
+@app.route("/python/<text>")
+def display_python(text='is_cool'):
+    return f"Python {text.replace('_', ' ')}"
+
+
+@app.route("/number/<n>")
+def display_number(n):
+    if n.isdigit():
+        return (f"{n} is a number")
+    else:
+        abort(404)
+
+
+"""Run only if it's the main file"""
+
+
+if __name__ == "__main__":
+    app.debug = True
     app.run(host='0.0.0.0', port=5000)
