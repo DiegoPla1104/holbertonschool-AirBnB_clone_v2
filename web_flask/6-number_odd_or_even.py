@@ -64,10 +64,12 @@ def display_number_temp_and_type(n):
         typ = 0
         if n % 2 == 0:
             typ = "even"
-            return render_template("6-number_odd_or_even.html", num=n, type=typ)
+            return render_template("6-number_odd_or_even.html\
+", num=n, type=typ)
         else:
             typ = "odd"
-            return render_template("6-number_odd_or_even.html", num=n, type=typ)
+            return render_template("6-number_odd_or_even.html\
+", num=n, type=typ)
     else:
         abort(404)
 
