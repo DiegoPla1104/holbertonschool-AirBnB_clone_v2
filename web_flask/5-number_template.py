@@ -54,12 +54,7 @@ def display_number_template(n):
     if n.isdigit():
         return render_template("5-number.html", num=n)
     else:
-        return """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-<title>404 Not Found</title>
-<h1>Not Found</h1>
-<p>The requested URL was not found on the server.  If you \
-entered the URL manually please check your spelling and try again.</p>
-"""
+        abort(404)
 
 
 """Run only if it's the main file"""
