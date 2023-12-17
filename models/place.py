@@ -36,12 +36,13 @@ class Place(BaseModel, Base):
         amenity_ids = []
         reviews = relationship('Review', cascade='delete', backref='Place')
         amenities = relationship('Amenity', secondary='place_amenity',
-                                 viewonly=False, overlaps="placenities")
+                                 viewonly=False)
     else:
         city_id = user_id = name = description = ""
         number_rooms = number_bathrooms = max_guest = price_by_night = 0
         latitude = longitude = 0.0
         amenity_ids = []
+
 
         @property
         def reviews(self):
