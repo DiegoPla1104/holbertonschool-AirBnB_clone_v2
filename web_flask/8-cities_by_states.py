@@ -8,13 +8,12 @@ from models.state import State
 app = Flask(__name__)
 
 
-@app.route('/states_list', strict_slashes=False)
+@app.route('/cities_by_states', strict_slashes=False)
 def display_states():
     """Display a HTML page with a list of states"""
     storage_states = storage.all(State)
-    sorted_states = sorted(storage_states.values(), key=lambda x: x.name)
 
-    return render_template('8-cities_by_states.html', states=sorted_states)
+    return render_template('8-cities_by_states.html', states=storage_states)
 
 
 @app.teardown_appcontext
