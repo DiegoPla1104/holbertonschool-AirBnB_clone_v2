@@ -8,7 +8,7 @@ from models import storage
 app = Flask(__name__)
 
 
-@app.route('/states_list')
+@app.route('/states_list', strict_slashes=False)
 def states_list():
     """State list"""
     sstate = storage.all(State)
@@ -22,4 +22,4 @@ def teardown(self):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5000', debug=True, strict_slashes=False)
+    app.run(host='0.0.0.0', port='5000', debug=True)
